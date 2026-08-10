@@ -1428,21 +1428,6 @@ Switch back to the character that started the opening.
 
 ---
 
-This resource is designed to keep third-party dependencies external.
-
-Do not bundle modified copies of:
-
-```text
-ox_lib
-ox_inventory
-ox_target
-oxmysql
-qbx_core
-qbx_vehicles
-qbx_garages
-qb-core
-```
-
 inside this resource.
 
 If you redistribute a modified version:
@@ -1474,25 +1459,3 @@ Built for the FiveM ecosystem using:
 The case-opening concept is inspired by popular game case-opening interfaces, while the implementation and UI are built specifically for this resource.
 
 ---
-
-```text
-[ ] Install ox_lib
-[ ] Install oxmysql
-[ ] Install ox_inventory
-[ ] Install ox_target
-[ ] Install QB-Core or Qbox dependencies
-[ ] Import install/gatrons_gacha.sql
-[ ] Add classic_box / premium_box to ox_inventory
-[ ] Copy case inventory images
-[ ] Configure shared/config.lua
-[ ] Configure shared/shop_config.lua
-[ ] Configure garage names
-[ ] Check ui/dist/index.html exists
-[ ] Start gatrons-gachav2 after dependencies
-[ ] Test NPC with /gachashopdebug
-[ ] Test /setcoin with group.admin
-[ ] Test Use Case → Close UI → item remains
-[ ] Test Use Case → OPEN CASE → item is removed
-[ ] Test item reward
-[ ] Test vehicle reward
-```
