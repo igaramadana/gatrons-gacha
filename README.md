@@ -154,27 +154,6 @@ gatrons_coin
 
 `citizenid` is the primary key.
 
-### Pending gacha table
-
-Pending openings are also owned by `citizenid`.
-
-This prevents a reward started on one character from being claimed by another character on the same account.
-
-### Upgrading from the old account/Steam-based version
-
-The migration system keeps a backup of the previous schema before converting it.
-
-Backup table names can include:
-
-```text
-gatrons_coin_identifier_backup
-gatrons_gacha_pending_identifier_backup
-```
-
-Keep these backup tables until you have verified all balances and pending rewards.
-
-> Because the old system was account-wide, the resource cannot automatically know how one old balance should be divided between multiple characters.
-
 ---
 
 # ox_inventory Case Items
@@ -234,8 +213,6 @@ And:
     },
 },
 ```
-
-## Why is `consume = 1` still used?
 
 This is intentional.
 
@@ -1321,32 +1298,6 @@ bun run build
 
 ---
 
-## Case disappears before OPEN CASE
-
-With the current version, this should **not** happen.
-
-Check that you are using the latest:
-
-```text
-client/main.lua
-server/main.lua
-server/integrations/inventory.lua
-```
-
-and the latest `ox_inventory` item exports.
-
-The item can keep:
-
-```lua
-consume = 1
-```
-
-because the resource cancels the initial automatic consume.
-
----
-
-## Case does not disappear after OPEN CASE
-
 Check:
 
 - the case is still in the original inventory slot;
@@ -1477,51 +1428,6 @@ Switch back to the character that started the opening.
 
 ---
 
-# Upgrade Notes
-
-## From Steam/account-based Gatrons Coin
-
-The current version no longer requires a Steam identifier for Gatrons Coin.
-
-Do **not** configure `steam_webApiKey` specifically for this resource.
-
-Coin and pending ownership now use:
-
-```text
-citizenid
-```
-
-The migration system creates backup tables before converting legacy data.
-
----
-
-## From the old consume-on-use version
-
-Old behavior:
-
-```text
-Use box
-→ box immediately removed
-→ UI opens
-```
-
-Current behavior:
-
-```text
-Use box
-→ preview UI opens
-→ box stays in inventory
-→ click OPEN CASE
-→ box is removed
-→ roulette starts
-```
-
-Make sure both Lua and UI files are from the current version.
-
----
-
-# Public Release Notes
-
 This resource is designed to keep third-party dependencies external.
 
 Do not bundle modified copies of:
@@ -1568,8 +1474,6 @@ Built for the FiveM ecosystem using:
 The case-opening concept is inspired by popular game case-opening interfaces, while the implementation and UI are built specifically for this resource.
 
 ---
-
-## Quick Install Checklist
 
 ```text
 [ ] Install ox_lib
